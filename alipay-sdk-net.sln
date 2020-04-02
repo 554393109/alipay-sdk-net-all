@@ -1,6 +1,8 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlipaySDKNet", "AlipaySDKNet\AlipaySDKNet.csproj", "{0059EC0F-FFE8-440C-87BA-2C60544FC90F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestNetFramework", "UnitTestNetFramework\UnitTestNetFramework.csproj", "{136FA3B6-3114-47D0-ADA9-D8CA49566E0C}"
