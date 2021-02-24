@@ -10,7 +10,7 @@ namespace Aop.Api.Domain
     public class AlipayUserAgreementPageSignModel : AopObject
     {
         /// <summary>
-        /// 请按当前接入的方式进行填充，且输入值必须为文档中的参数取值范围。  扫码或者短信页面签约需要拼装http的请求地址访问中间页面，钱包h5页面签约可直接拼接schema的请求地址
+        /// 请按当前接入的方式进行填充，且输入值必须为文档中的参数取值范围。 扫码或者短信页面签约需要拼装http的请求地址访问中间页面，钱包h5页面签约可直接拼接scheme的请求地址
         /// </summary>
         [XmlElement("access_params")]
         public AccessParams AccessParams { get; set; }
@@ -22,7 +22,7 @@ namespace Aop.Api.Domain
         public string AgreementEffectType { get; set; }
 
         /// <summary>
-        /// 是否允许花芝GO降级成原代扣（即销售方案指定的代扣产品），在花芝GO场景下才会使用该值。取值：true-允许降级，false-不允许降级。默认为false。
+        /// 是否允许花芝GO降级成原代扣（即销售方案指定的代扣产品），在花芝GO场景下才会使用该值。取值：true-允许降级，false-不允许降级。默认为true。
         /// </summary>
         [XmlElement("allow_huazhi_degrade")]
         public string AllowHuazhiDegrade { get; set; }
@@ -58,13 +58,19 @@ namespace Aop.Api.Domain
         public string MerchantProcessUrl { get; set; }
 
         /// <summary>
+        /// 业务透传参数
+        /// </summary>
+        [XmlElement("pass_params")]
+        public string PassParams { get; set; }
+
+        /// <summary>
         /// 周期管控规则参数period_rule_params，在签约周期扣款产品（如CYCLE_PAY_AUTH_P）时必传，在签约其他产品时无需传入。 周期扣款产品，会按照这里传入的参数提示用户，并对发起扣款的时间、金额、次数等做相应限制。
         /// </summary>
         [XmlElement("period_rule_params")]
         public PeriodRuleParams PeriodRuleParams { get; set; }
 
         /// <summary>
-        /// 个人签约产品码，商户和支付宝签约时确定，商户可咨询技术支持。
+        /// 个人签约产品码，商户和支付宝签约时确定，商户可咨询技术支持。 周期扣款个人签约产品码固定为 CYCLE_PAY_AUTH_P
         /// </summary>
         [XmlElement("personal_product_code")]
         public string PersonalProductCode { get; set; }
@@ -76,7 +82,7 @@ namespace Aop.Api.Domain
         public ProdParams ProdParams { get; set; }
 
         /// <summary>
-        /// 销售产品码，商户签约的支付宝合同所对应的产品码。
+        /// 销售产品码，商户签约的支付宝合同所对应的产品码。 周期扣款场景固定为 CYCLE_PAY_AUTH。
         /// </summary>
         [XmlElement("product_code")]
         public string ProductCode { get; set; }
@@ -88,7 +94,7 @@ namespace Aop.Api.Domain
         public string PromoParams { get; set; }
 
         /// <summary>
-        /// 协议签约场景，商户和支付宝签约时确定，商户可咨询技术支持。  当传入商户签约号external_agreement_no时，场景不能为默认值DEFAULT|DEFAULT。
+        /// 协议签约场景，商户和支付宝签约时确定，商户可咨询技术支持。 当传入商户签约号external_agreement_no时，场景不能为默认值DEFAULT|DEFAULT。 代扣产品常见场景值参见：  https://opendocs.alipay.com/open/20190319114403226822/signscene。 
         /// </summary>
         [XmlElement("sign_scene")]
         public string SignScene { get; set; }
@@ -98,6 +104,12 @@ namespace Aop.Api.Domain
         /// </summary>
         [XmlElement("sign_validity_period")]
         public string SignValidityPeriod { get; set; }
+
+        /// <summary>
+        /// 商户指定优先扣款渠道
+        /// </summary>
+        [XmlElement("specified_sort_channel_params")]
+        public SpecifiedChannelParam SpecifiedSortChannelParams { get; set; }
 
         /// <summary>
         /// 此参数用于传递子商户信息，无特殊需求时不用关注。目前商户代扣、海外代扣、淘旅行信用住产品支持传入该参数（在销售方案中“是否允许自定义子商户信息”需要选是）。

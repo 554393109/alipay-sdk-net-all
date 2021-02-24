@@ -35,25 +35,25 @@ namespace Aop.Api.Domain
         public string FloorAmount { get; set; }
 
         /// <summary>
-        /// 所有商品最多可享折扣数量。 当用户购买多件时，最多可以对几件特价支付。假设券类型为无资金单品特价券(ITEM_CASHLESS_SPE_VOUCHER)，商品编码填写A、B，此参数传入2，则订单中不管是A或者B，一共只能优惠2件，第3件以上原价。必须是整数，最低数量为1，最高99。券类型为无资金单品折扣券(ITEM_CASHLESS_DISCOUNT_VOUCHER)和无资金单品特价券(ITEM_CASHLESS_SPE_VOUCHER)时必填，无资金单品代金券下此值必须为0。 特别注意：此字段折扣数量的计算方式，相对老版本版本发生了变化。老版本的计算方式如下： 同样假设券类型为无资金单品特价券（ITEM_CASHLESS_SPE_VOUCHER），商品编码填写A、B，此参数传入3，则订单中A、B两个单品分别最多3件特价X元，第4件以上原价。必须是整数，最低数量为1，最高99。 voucher_type为无资金单品折扣券（ITEM_CASHLESS_DISCOUNT_VOUCHER）和无资金单品特价券（ITEM_CASHLESS_SPE_VOUCHER）时必填，无资金单品代金券下此值必须为0。可以直接通过产品文档说明中的API的版本信息或者创建券模板返回结果中的的最大优惠字段（voucher_discount_limit）来确认具体使用的哪种折扣方式。
+        /// 所有商品最多可享折扣数量。 当用户购买多件时，最多可以对几件特价支付。假设券类型为无资金单品特价券(ITEM_CASHLESS_SPE_VOUCHER)，商品编码填写A、B，此参数传入2，则订单中不管是A或者B，一共只能优惠2件，第3件以上原价。必须是整数，最低数量为1，最高99。券类型为无资金单品折扣券(ITEM_CASHLESS_DISCOUNT_VOUCHER)和无资金单品特价券(ITEM_CASHLESS_SPE_VOUCHER)时必填，无资金单品代金券下此值必须为0。 特别注意：此字段折扣数量的计算方式，相对老版本发生了变化。老版本的计算方式如下： 同样假设券类型为无资金单品特价券（ITEM_CASHLESS_SPE_VOUCHER），商品编码填写A、B，此参数传入3，则订单中A、B两个单品分别最多3件特价X元，第4件以上原价。必须是整数，最低数量为1，最高99。 voucher_type为无资金单品折扣券（ITEM_CASHLESS_DISCOUNT_VOUCHER）和无资金单品特价券（ITEM_CASHLESS_SPE_VOUCHER）时必填，无资金单品代金券下此值必须为0。可以直接通过产品文档说明中的API的版本信息或者创建券模板返回结果中的的最大优惠字段（voucher_discount_limit）来确认具体使用的哪种折扣方式。
         /// </summary>
         [XmlElement("goods_ceiling_quantity")]
         public string GoodsCeilingQuantity { get; set; }
 
         /// <summary>
-        /// 单品券封面图片。  请先通过图片上传接口：alipay.marketing.material.image.upload上传图片。通过图片上传接口获取获得图片资源id以后，将该图片资源id传入，单张大小不超过2MB，格式支持png、gif、jpg、jpeg、bmp，尺寸为800X600
+        /// 单品券封面图片。 请先通过 <a href="https://opendocs.alipay.com/pre-apis/00a8ae">alipay.marketing.material.image.upload</a>(营销图片资源上传接口)上传图片。通过图片上传接口获得图片资源ID以后，将该图片资源ID传入，单张大小不超过2MB，格式支持png、gif、jpg、jpeg、bmp，尺寸为800X600。
         /// </summary>
         [XmlElement("goods_cover_image_id")]
         public string GoodsCoverImageId { get; set; }
 
         /// <summary>
-        /// 单品券详情图片。  请先通过图片上传接口：alipay.marketing.material.image.upload上传图片。通过图片上传接口获取获得图片资源id以后，将该图片资源id传入，单张大小不超过2MB，格式支持png、gif、jpg、jpeg、bmp，尺寸为800X600。  最多支持3张单品详情图片，图片资源id用英文逗号分隔，不可含有重复资源ID。
+        /// 单品券详情图片。 请先通过 <a href="https://opendocs.alipay.com/pre-apis/00a8ae">alipay.marketing.material.image.upload</a>(营销图片资源上传接口)上传图片。通过图片上传接口获得图片资源ID以后，将该图片资源ID传入，单张大小不超过2MB，格式支持png、gif、jpg、jpeg、bmp，尺寸为800X600。 最多支持3张单品详情图片，图片资源ID用英文逗号分隔，不可含有重复资源ID。
         /// </summary>
         [XmlElement("goods_detail_image_ids")]
         public string GoodsDetailImageIds { get; set; }
 
         /// <summary>
-        /// 可优惠商品编码。多个编码标点隔开，不能含有重复id，最多3千个单品数量。当用户支付时，交易中的商品编码和单品券配置的商品编码有任一匹配时，可以使用单品优惠券。
+        /// 可优惠商品编码，商家自定义。多个编码用 ',' 隔开，不能含有重复ID，最多3000个单品数量。当用户支付时，交易中的商品编码和单品券配置的商品编码有任一匹配时，可以使用单品优惠券。
         /// </summary>
         [XmlElement("goods_id")]
         public string GoodsId { get; set; }
@@ -101,7 +101,7 @@ namespace Aop.Api.Domain
         public string PublishStartTime { get; set; }
 
         /// <summary>
-        /// 规则配置，JSON字符串，{"PID": "2088512417841101,2088512417841102", "STORE": "123456,678901"}，其中PID表示可以核销该券的pid列表，多个值用英文逗号隔开，PID为必传且需与接口调用PID或授权PID同属一个商家，必须签约当面付，STORE表示可以核销该券的内部门店ID，多个值用英文逗号隔开 。仅支持PID和STOREID核销规则，PID列表和门店ID列表均不能含有重复ID，并且门店ID数量最多支持3000个。
+        /// 规则配置，JSON字符串，{"PID": "2088512417841101,2088512417841102", "STORE": "123456,678901"}，其中PID表示可以核销该券的PID列表，多个值用英文逗号隔开，PID为必传且需与接口调用PID或授权PID同属一个商家，必须签约当面付，STORE表示可以核销该券的内部门店ID，多个值用英文逗号隔开 。仅支持PID和STOREID核销规则，PID列表和门店ID列表均不能含有重复ID，并且门店ID数量最多支持3000个。
         /// </summary>
         [XmlElement("rule_conf")]
         public string RuleConf { get; set; }
@@ -119,7 +119,7 @@ namespace Aop.Api.Domain
         public string VoucherAvailableTime { get; set; }
 
         /// <summary>
-        /// 券使用说明。JSON数组字符串，最多可以有10条，每条最多50字。必须写明券的使用条件、领取条件、退款规则，请参考示例；
+        /// 券使用说明。JSON数组字符串，最多可以有10条，每条最多50字。必须写明券的使用条件、领取条件、退款规则，请参考示例。
         /// </summary>
         [XmlArray("voucher_description")]
         [XmlArrayItem("string")]
@@ -132,13 +132,13 @@ namespace Aop.Api.Domain
         public string VoucherQuantity { get; set; }
 
         /// <summary>
-        /// 无资金单品券券类型，目前仅支持无资金单品代金券（ITEM_CASHLESS_FIX_VOUCHER）、无资金单品折扣券（ITEM_CASHLESS_DISCOUNT_VOUCHER）、无资金单品特价券（ITEM_CASHLESS_SPE_VOUCHER）
+        /// 无资金单品券券类型。目前仅支持： ITEM_CASHLESS_FIX_VOUCHER：无资金单品代金券； ITEM_CASHLESS_DISCOUNT_VOUCHER：无资金单品折扣券； ITEM_CASHLESS_SPE_VOUCHER：无资金单品特价券。
         /// </summary>
         [XmlElement("voucher_type")]
         public string VoucherType { get; set; }
 
         /// <summary>
-        /// 券有效期。有两种类型：绝对时间和相对时间。使用JSON字符串表示。绝对时间有3个key：type、start、end，type取值固定为"ABSOLUTE"，start和end分别表示券生效时间和失效时间，格式为yyyy-MM-dd HH:mm:ss。绝对时间示例：{"type": "ABSOLUTE", "start": "2017-01-10 00:00:00", "end": "2017-01-13 23:59:59"}。相对时间有3个key：type、duration、unit，type取值固定为"RELATIVE"，duration表示从发券时间开始到往后推duration个单位时间为止作为券的使用有效期，unit表示有效时间单位，有效时间单位可枚举：MINUTE, HOUR, DAY。示例：{"type": "RELATIVE", "duration": 1 , "unit": "DAY" }，如果此刻发券，那么该券从现在开始生效1(duration)天(unit)后失效。
+        /// 券有效期，不能超过90天。type：红包有效期类型。支持 ABSOLUTE（绝对时间）、RELATIVE（相对时间）。ABSOLUTE（绝对时间）需传入 start （开始时间），end（结束时间）格式为yyyy-MM-dd HH:mm:ss。RELATIVE（相对时间）需传入 duration（有效时间）表示红包在发放后的duration个单位时间内有效，unit（有效时间单位）支持：MINUTE, HOUR, DAY，如"duration":1,"unit":"DAY"表示红包在发放开始的1天内有效。
         /// </summary>
         [XmlElement("voucher_valid_period")]
         public string VoucherValidPeriod { get; set; }

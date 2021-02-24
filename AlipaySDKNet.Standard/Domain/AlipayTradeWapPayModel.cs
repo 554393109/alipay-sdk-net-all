@@ -60,7 +60,7 @@ namespace Aop.Api.Domain
         public List<GoodsDetail> GoodsDetail { get; set; }
 
         /// <summary>
-        /// 商品主类型 :0-虚拟类商品,1-实物类商品
+        /// 商品主类型，取值如下： 0：虚拟类商品； 1：实物类商品。
         /// </summary>
         [XmlElement("goods_type")]
         public string GoodsType { get; set; }
@@ -78,7 +78,7 @@ namespace Aop.Api.Domain
         public string MerchantOrderNo { get; set; }
 
         /// <summary>
-        /// 商户网站唯一订单号
+        /// 商户网站订单号，由商家自定义，需保证商家系统中唯一。仅支持数字、字母、下划线。
         /// </summary>
         [XmlElement("out_trade_no")]
         public string OutTradeNo { get; set; }
@@ -144,7 +144,7 @@ namespace Aop.Api.Domain
         public SubMerchant SubMerchant { get; set; }
 
         /// <summary>
-        /// 商品的标题/交易标题/订单标题/订单关键字等。
+        /// 商品标题/交易标题/订单标题/订单关键字等。  注意：不可使用特殊字符，如 /，=，& 等。
         /// </summary>
         [XmlElement("subject")]
         public string Subject { get; set; }
@@ -156,13 +156,13 @@ namespace Aop.Api.Domain
         public string TimeExpire { get; set; }
 
         /// <summary>
-        /// 该笔订单允许的最晚付款时间，逾期将关闭交易。取值范围：1m～15d。m-分钟，h-小时，d-天，1c-当天（1c-当天的情况下，无论交易何时创建，都在0点关闭）。 该参数数值不接受小数点， 如 1.5h，可转换为 90m。
+        /// 该笔订单允许的最晚付款时间，逾期将关闭交易。取值范围：5m～15d。m-分钟，h-小时，d-天，1c-当天（1c-当天的情况下，无论交易何时创建，都在0点关闭）。 该参数数值不接受小数点， 如 1.5h，可转换为 90m。
         /// </summary>
         [XmlElement("timeout_express")]
         public string TimeoutExpress { get; set; }
 
         /// <summary>
-        /// 订单总金额，单位为元，精确到小数点后两位，取值范围[0.01,100000000]
+        /// 订单总金额，单位为人民币（元），取值范围为 0.01~100000000.00，精确到小数点后两位。
         /// </summary>
         [XmlElement("total_amount")]
         public string TotalAmount { get; set; }

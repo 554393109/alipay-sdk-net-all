@@ -34,7 +34,7 @@ namespace Aop.Api.Domain
         public string FundAccount { get; set; }
 
         /// <summary>
-        /// 红包变动异步通知地址，传入此字段后，红包的核销将会进行异步通知，通知具体内容见下方触发异步通知字段描述
+        /// 红包变动异步通知地址，传入此字段后，红包的核销将会进行异步通知。
         /// </summary>
         [XmlElement("notify_uri")]
         public string NotifyUri { get; set; }
@@ -70,7 +70,7 @@ namespace Aop.Api.Domain
         public string RuleConf { get; set; }
 
         /// <summary>
-        /// 模板总金额。本次发放模板设置的总金额。币种为人民币，单位为元。该数值不能小于1.00元，小数点以后最多保留两位。
+        /// 模板总金额。本次发放模板设置的总金额。单位为人民币（元），取值范围为不小于1元，精确到小数点后两位
         /// </summary>
         [XmlElement("total_amount")]
         public string TotalAmount { get; set; }
@@ -82,7 +82,7 @@ namespace Aop.Api.Domain
         public string VoucherDescription { get; set; }
 
         /// <summary>
-        /// 类型。可枚举，暂时只支持"红包"(COUPON)，使用示例voucher_type=COUPON。红包可以拆分多次使用，比如：1元红包，可以先用掉0.5元，剩余的0.5元可以继续使用；可以多个红包叠加使用，一笔支付最多叠加10个红包；红包被使用后发生退款，如果红包有效期还在，会退还给用户红包，如果有效期已过，就会将资金退回原红包模板出资账户。
+        /// 券类型。可枚举，暂时只支持"红包"(COUPON)，使用示例voucher_type=COUPON。红包可以拆分多次使用，比如：1元红包，可以先用掉0.5元，剩余的0.5元可以继续使用；可以多个红包叠加使用，一笔支付最多叠加10个红包；红包被使用后发生退款，如果红包有效期还在，会退还给用户红包，如果有效期已过，就会将资金退回原红包模板出资账户。
         /// </summary>
         [XmlElement("voucher_type")]
         public string VoucherType { get; set; }
@@ -94,7 +94,7 @@ namespace Aop.Api.Domain
         public string VoucherUseScene { get; set; }
 
         /// <summary>
-        /// "ABSOLUTE", "start": "2017-01-10 00:00:00", "end": "2017-01-13 23:59:59"}。相对时间有3个key：type、duration、unit，type取值固定为"RELATIVE"，duration表示从发红包时间开始到往后推duration个单位时间为止作为红包的使用有效期，unit表示有效时间单位，有效时间单位可枚举：MINUTE, HOUR, DAY。示例：{"type": "RELATIVE", "duration": 1 , "unit": "DAY" }，如果此刻发红包，那么该红包从现在开始生效1(duration)天(unit)后失效。
+        /// 红包有效期，不能超过90天。type：红包有效期类型。支持 ABSOLUTE（绝对时间）、RELATIVE（相对时间）。ABSOLUTE（绝对时间）需传入 start （开始时间），end（结束时间）格式为yyyy-MM-dd HH:mm:ss。RELATIVE（相对时间）需传入 duration（有效时间）表示红包在发放后的duration个单位时间内有效，unit（有效时间单位）支持：MINUTE, HOUR, DAY，如"duration":1,"unit":"DAY"表示红包在发放开始的1天内有效。
         /// </summary>
         [XmlElement("voucher_valid_period")]
         public string VoucherValidPeriod { get; set; }

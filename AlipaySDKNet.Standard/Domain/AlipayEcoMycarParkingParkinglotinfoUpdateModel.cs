@@ -1,5 +1,6 @@
 using System;
 using System.Xml.Serialization;
+using System.Collections.Generic;
 
 namespace Aop.Api.Domain
 {
@@ -14,6 +15,13 @@ namespace Aop.Api.Domain
         /// </summary>
         [XmlElement("agent_id")]
         public string AgentId { get; set; }
+
+        /// <summary>
+        /// 车场业务归属列表
+        /// </summary>
+        [XmlArray("business_isv")]
+        [XmlArrayItem("business_item")]
+        public List<BusinessItem> BusinessIsv { get; set; }
 
         /// <summary>
         /// 该参数废弃
@@ -64,6 +72,18 @@ namespace Aop.Api.Domain
         public string EquipmentName { get; set; }
 
         /// <summary>
+        /// 是否支持电子发票。枚举支持：  *0：表示不支持。  *1：表示支持。
+        /// </summary>
+        [XmlElement("is_support_invoice")]
+        public string IsSupportInvoice { get; set; }
+
+        /// <summary>
+        /// ISV电话，传入original_isv_pid、original_isv_appid时，此处为服务商电话
+        /// </summary>
+        [XmlElement("isv_mobile")]
+        public string IsvMobile { get; set; }
+
+        /// <summary>
         /// 该参数废弃
         /// </summary>
         [XmlElement("latitude")]
@@ -80,6 +100,30 @@ namespace Aop.Api.Domain
         /// </summary>
         [XmlElement("mchnt_id")]
         public string MchntId { get; set; }
+
+        /// <summary>
+        /// ISV的APPID,服务商调用必传，由ISV提供给服务商
+        /// </summary>
+        [XmlElement("original_isv_appid")]
+        public string OriginalIsvAppid { get; set; }
+
+        /// <summary>
+        /// ISV电话，此值与isv_mobile组合使用
+        /// </summary>
+        [XmlElement("original_isv_mobile")]
+        public string OriginalIsvMobile { get; set; }
+
+        /// <summary>
+        /// ISV的名称，服务商调用必传，由ISV提供给服务商
+        /// </summary>
+        [XmlElement("original_isv_name")]
+        public string OriginalIsvName { get; set; }
+
+        /// <summary>
+        /// ISV的PID，服务商调用必传,由ISV提供给服务商
+        /// </summary>
+        [XmlElement("original_isv_pid")]
+        public string OriginalIsvPid { get; set; }
 
         /// <summary>
         /// 该参数废弃
@@ -104,6 +148,12 @@ namespace Aop.Api.Domain
         /// </summary>
         [XmlElement("parking_fee_description")]
         public string ParkingFeeDescription { get; set; }
+
+        /// <summary>
+        /// 商户在停车平台露出的停车价格图片；注意：该图片为PNG格式内容为BASE64的字符串，大小不要超过1MB
+        /// </summary>
+        [XmlElement("parking_fee_description_img")]
+        public string ParkingFeeDescriptionImg { get; set; }
 
         /// <summary>
         /// 支付宝返回停车场id，系统唯一
@@ -136,7 +186,7 @@ namespace Aop.Api.Domain
         public string ParkingNumber { get; set; }
 
         /// <summary>
-        /// 高德地图唯一标识
+        /// 高德地图唯一标识。新增高德兴趣点流程 <a href="https://opensupport.alipay.com/support/helpcenter/311/201602557288?ant_source=zsearch">点此查看详情</a> 。 获取高德兴趣点流程 <a href="https://opensupport.alipay.com/support/helpcenter/311/201602557287?ant_source=zsearch">点此查看详情</a>。
         /// </summary>
         [XmlElement("parking_poiid")]
         public string ParkingPoiid { get; set; }
@@ -154,7 +204,7 @@ namespace Aop.Api.Domain
         public string ParkingType { get; set; }
 
         /// <summary>
-        /// 支付方式（1为支付宝在线缴费，2为支付宝代扣缴费，3当面付)，如支持多种方式以','进行间隔
+        /// 支付方式。枚举支持： *1：表示支付宝在线缴费。  *2：表示支付宝代扣缴费。  *3：表示当面付。  说明：如支持多种方式以 ',' 进行分隔。
         /// </summary>
         [XmlElement("pay_type")]
         public string PayType { get; set; }
@@ -170,6 +220,18 @@ namespace Aop.Api.Domain
         /// </summary>
         [XmlElement("shopingmall_id")]
         public string ShopingmallId { get; set; }
+
+        /// <summary>
+        /// 停车场车位数
+        /// </summary>
+        [XmlElement("sum_space")]
+        public string SumSpace { get; set; }
+
+        /// <summary>
+        /// 是否支持先离后付。枚举支持：  *Y：支持。  *N：不支持。  说明：默认为空不支持，此参数适用于签约信用代扣的商户。
+        /// </summary>
+        [XmlElement("support_after_pay")]
+        public string SupportAfterPay { get; set; }
 
         /// <summary>
         /// 用户支付未离场的超时时间(以分钟为单位)

@@ -1,5 +1,7 @@
 using System;
 using System.Xml.Serialization;
+using System.Collections.Generic;
+using Aop.Api.Domain;
 
 namespace Aop.Api.Response
 {
@@ -19,6 +21,13 @@ namespace Aop.Api.Response
         /// </summary>
         [XmlElement("agent_id")]
         public string AgentId { get; set; }
+
+        /// <summary>
+        /// 车场业务归属列表
+        /// </summary>
+        [XmlArray("business_isv")]
+        [XmlArrayItem("business_item")]
+        public List<BusinessItem> BusinessIsv { get; set; }
 
         /// <summary>
         /// 城市编码
@@ -61,6 +70,12 @@ namespace Aop.Api.Response
         /// </summary>
         [XmlElement("parking_fee_description")]
         public string ParkingFeeDescription { get; set; }
+
+        /// <summary>
+        /// 停车场价格明细图片
+        /// </summary>
+        [XmlElement("parking_fee_description_img")]
+        public string ParkingFeeDescriptionImg { get; set; }
 
         /// <summary>
         /// 支付宝返回停车场id，系统唯一

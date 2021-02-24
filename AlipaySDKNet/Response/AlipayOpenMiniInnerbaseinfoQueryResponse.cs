@@ -9,6 +9,12 @@ namespace Aop.Api.Response
     public class AlipayOpenMiniInnerbaseinfoQueryResponse : AopResponse
     {
         /// <summary>
+        /// 小程序别名，简称
+        /// </summary>
+        [XmlElement("app_alias_name")]
+        public string AppAliasName { get; set; }
+
+        /// <summary>
         /// 类目Id列表
         /// </summary>
         [XmlElement("app_category_ids")]
@@ -81,6 +87,12 @@ namespace Aop.Api.Response
         public string MiniAppId { get; set; }
 
         /// <summary>
+        /// 新小程序前台类目，一级与二级、三级用下划线隔开，最多可以选四个类目，类目之间;隔开。使用后不再读取app_category_ids值，老前台类目将废弃
+        /// </summary>
+        [XmlElement("mini_category_ids")]
+        public string MiniCategoryIds { get; set; }
+
+        /// <summary>
         /// 应用创建来源，alipay = 支付宝，taobao = 淘宝
         /// </summary>
         [XmlElement("origin")]
@@ -91,6 +103,12 @@ namespace Aop.Api.Response
         /// </summary>
         [XmlElement("owner_entity")]
         public string OwnerEntity { get; set; }
+
+        /// <summary>
+        /// 小程序主体头像信息
+        /// </summary>
+        [XmlElement("owner_portrait")]
+        public string OwnerPortrait { get; set; }
 
         /// <summary>
         /// 小程序客服邮箱

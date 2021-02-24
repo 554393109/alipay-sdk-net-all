@@ -16,7 +16,7 @@ namespace Aop.Api.Domain
         public bool BiDa { get; set; }
 
         /// <summary>
-        /// 设备查询条件类型 supplierid+sn : (SUPPLIERID_SN) itemid + sn: ITEMID_SN
+        /// 设备查询条件类型 ；SUPPLIERID_SN:supplierid+sn ;  ITEMID_SN:itemid + sn; SN:sn
         /// </summary>
         [XmlElement("device_query_type")]
         public string DeviceQueryType { get; set; }
@@ -34,7 +34,7 @@ namespace Aop.Api.Domain
         public string ItemId { get; set; }
 
         /// <summary>
-        /// 消息内容(xpaas_common:{"contentParams":["消息内容"]};audio_msg:{"contentParams":["语音内容"]};cloud_print:{"contentParams":["打印内容"],"target":"打印编号-可选默认第一个","instructionFormat":"template或cmd"})
+        /// 消息内容
         /// </summary>
         [XmlElement("msg_content")]
         public string MsgContent { get; set; }
@@ -58,7 +58,7 @@ namespace Aop.Api.Domain
         public long MsgPriority { get; set; }
 
         /// <summary>
-        /// 消息类型(通用消息: xpaas_common;语音消息: audio_msg;云打印: cloud_print)
+        /// 消息类型： xpaas_common-小程序消息； ruyi_ordermsg-如意订单消息
         /// </summary>
         [XmlElement("msg_type")]
         public string MsgType { get; set; }

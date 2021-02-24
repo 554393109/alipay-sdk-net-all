@@ -35,6 +35,12 @@ namespace Aop.Api.Response
         public string GmtRefundPay { get; set; }
 
         /// <summary>
+        /// 是否有银行卡冲退
+        /// </summary>
+        [XmlElement("has_deposit_back")]
+        public string HasDepositBack { get; set; }
+
+        /// <summary>
         /// 买家支付宝用户号，该参数已废弃，请不要使用
         /// </summary>
         [XmlElement("open_id")]
@@ -102,7 +108,7 @@ namespace Aop.Api.Response
         public string RefundSettlementId { get; set; }
 
         /// <summary>
-        /// 本次商户实际退回金额  注：在签约收单产品时需勾选“返回资金明细”才会返回
+        /// 本次商户实际退回金额。 说明：如需获取该值，需在入参query_options中传入 refund_detail_item_list。
         /// </summary>
         [XmlElement("send_back_fee")]
         public string SendBackFee { get; set; }
